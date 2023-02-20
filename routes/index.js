@@ -1,11 +1,11 @@
 const express = require("express");
-const { userController } = require("../controllers/index.js");
+const { createUser, searchAllUser, searchUser } = require("../controllers/index.js");
 const router = express.Router();
 
-router.post('/createAccount', userController);
+//rotas
+router.post('/createAccount', createUser);
+router.get('/searchAllUser', searchAllUser);
+router.post('/searchUser', searchUser);
 
-router.get('/post', (req, res) => {
-    res.send('podes')
-});
 
 module.exports = router
