@@ -5,7 +5,7 @@ const createUser = async (req, res) => {
     await User.create({
         name: name
     })
-    res.status(200).json({ msg: 'Pessoa cadastrada' });
+    res.status(200).json({ msg: 'Usuário cadastrado' });
 }
 //encontrar todos os usuários
 const searchAllUser = async (req, res) => {
@@ -23,8 +23,32 @@ const searchUser = async (req, res) => {
     })
     res.status(200).send({ msg: users });
 }
+//editar usuário
+const editUser = async (req, res) => {
+    const { name, id } = req.body;
+    await User.update({
+        name: name,
+    }, {
+        where: {
+            id: id,
+        }
+    })
+    res.status(200).send({ msg: "Usuário atualizado!" });
+}
+//deletar usuário
+const deletetUser = async (req, res) => {
+    const { name, id } = req.body;
+    await User.destroy({
+        where: {
+            id: id,
+        }
+    })
+    res.status(200).send({ msg: "Usuário deletado!" });
+}
 module.exports = {
     createUser,
     searchAllUser,
-    searchUser
+    searchUser,
+    editUser,
+    deletetUser
 }
